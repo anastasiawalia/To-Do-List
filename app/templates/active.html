@@ -1,0 +1,35 @@
+<div class="title"><h3>{{ active.title }}</h3></div>
+
+
+
+<hr/>
+
+<div>
+    <div>
+        <!-- {{message.$value}}for children with one value -->
+        <!-- {{message.value}} for children with multiple keys/values -->
+        <p class="center"><i>all tasks:</i> | <span ng-repeat="task in active.allMessages">{{ task.value }} | </span></p>
+
+        
+        
+        
+        <table>
+            <tr>
+                <th style="text-align: left">task</th>
+                <th class="center"><u>priority</u></th>
+                <th class="center">date due</th>          
+                <th class="tableCheckbox center">click <span class="ion-checkmark-circled"></span> to complete</th>
+            </tr>
+            
+            <tr ng-repeat="task in active.allMessages" 
+                ng-show="!active.Message.calcOverdue(active.Message.calcDueDate(task.dateAdded)) && !task.completed"  >
+                <td> {{ task.value }} </td>
+                <td class="center"> {{ task.priority | priority }} </td>
+                <td class="center"> {{ active.Message.calcDueDate(task.dateAdded) | date: 'MMM d HH:mm:ss' }} </td>              
+                <td class="center" ng-show="{{ !task.completed }}">
+                    <a ng-click="active.Message.checkOff(task)"><span class="ion-checkmark-circled"></span></a>
+                </td>
+            </tr>
+            
+        </table>
+    </div>

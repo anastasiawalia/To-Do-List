@@ -1,0 +1,47 @@
+<div class="title"><h3>{{ all.title }}</h3></div>
+
+
+<hr/>
+
+<div>
+    <div>
+        <!-- {{message.$value}}for children with one value -->
+        <!-- {{message.value}} for children with multiple keys/values -->
+        <p class="center">| <span ng-repeat="task in all.allMessages">{{ task.value }} | </span></p>
+
+
+        <table>
+            <tr>
+                <th style="text-align: left">task</th>
+                <th class="center">priority</th>
+<!--            <th>date added</th>-->
+                <th class="center"><u>date due</u></th>
+                <th class="center">completed?</th>
+<!--            <th class="center">overdue?</th>                 -->
+                <th class="center">click <span class="ion-checkmark-circled"></span> to complete</th>
+            </tr>
+            
+            
+            <tr ng-repeat="task in all.allMessages" 
+                ng-style="{'text-decoration': all.getTextDeco(task.dateAdded, task.completed) }">
+                
+                <td> {{ task.value }} </td>
+                
+                <td class="center"> {{ task.priority | priority }} </td>
+                
+<!--            <td> {{ task.dateAdded | date: 'MMM d HH:mm:ss' }} </td>-->
+                
+                <td class="center"> {{ all.Message.calcDueDate(task.dateAdded) | date: 'MMM d HH:mm:ss' }} </td>
+                
+                <td class="center" ng-show="{{ task.completed }}"><span class="ion-checkmark"></span> </td>
+                <td class="center" ng-show="{{ !task.completed }}"></td>
+                
+<!--            <td class="center"> {{ all.Message.calcOverdue(all.Message.calcDueDate(task.dateAdded)) }} </td>-->
+                
+                <td class="center" ng-show="{{ !task.completed }}">
+                    <a ng-click="all.Message.checkOff(task)"><span class="ion-checkmark-circled"></span></a>
+                </td>
+                <td class="center" ng-show="{{ task.completed }}"></td>
+            </tr>
+        </table>
+    </div>

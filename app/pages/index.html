@@ -1,58 +1,37 @@
 <!DOCTYPE html>
-<html ng-app="To-Do-List">
-<head>
+<html ng-app="blocItOff">
+<head lang="en">
     <meta charset="UTF-8">
-    <title>Bloc It Off!!!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <script src="js/angular-ui-router.min.js"></script>
-    <script>
-        var myApp = angular.module('myApp', ['ui.router']);
-        // For Component users, it should look like this:
-        // var myApp = angular.module('myApp', [require('angular-ui-router')]);
-    </script>
-    
+    <title>Bloc It Off</title>
+    <link rel="stylesheet" href="/app/styles/style.css">
 </head>
+<body>
 
-<body ng-controller="SampleCtrl">
-    <!-- anything typed in here is magically saved to our Firebase database! -->
-    <input type="text" ng-model="data.text"/>
+    <div class="box">
+        <a ui-sref="active">Active Tasks</a>
+        <a ui-sref="completed">Completed Tasks</a>
+        <a ui-sref="all">All Tasks</a>
+        
+   <ui-view></ui-view> 
+        
 
-    <!-- all changes from our Firebase database magically appear here! -->
-    <h1>You said: {{ data.text }}</h1> 
-    
-    <div ui-view></div>
-    <!-- We'll also add some navigation: -->
-    <a ui-sref="state1">State 1</a>
-    <a ui-sref="state2">State 2</a>
-    
-    <!-- partials/state1.html -->
-    <h1>State 1</h1>
-    <hr/>
-    <a ui-sref="state1.list">Show List</a>
-    <div ui-view></div>
-    
-    <!-- partials/state2.html -->
-    <h1>State 2</h1>
-    <hr/>
-    <a ui-sref="state2.list">Show List</a>
-    <div ui-view></div>
-    
-    <!-- partials/state1.list.html -->
-    <h3>List of State 1 Items</h3>
-    <ul>
-      <li ng-repeat="item in items">{{ item }}</li>
-    </ul>
-    
-    <!-- partials/state2.list.html -->
-    <h3>List of State 2 Things</h3>
-    <ul>
-      <li ng-repeat="thing in things">{{ thing }}</li>
-    </ul>
+      <div ng-controller="MainCtrl">
+        <input type="text" id="txtNewMessage" placeholder="new task">
+        <input type="radio" id="prHigh" name="Priority" value=1>high
+        <input type="radio" id="prMed"  name="Priority" value=2 checked>medium
+        <input type="radio" id="prLow"  name="Priority" value=3>low
+        <button id="btnUpdateMessage" class="btn btn-primary">Update</button>
+        <button id="btnUndo" class="btn btn-primary">Undo <span id="lblCurrentMessage" class="center"></span></button>
+    </div>
+</div>      
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>    
+<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+<script src="/app/scripts/ui-router.min.js"></script>
+<script src="/app/scripts/app.js"></script>
     
-    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
-    <script src="/app/scripts/app.js"></script>
 </body>
 </html>

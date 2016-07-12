@@ -1,0 +1,25 @@
+<div class="title"><h3>{{ completed.title }}</h3></div>
+
+
+
+<hr/>
+
+<div>
+    <div>
+        <!-- {{message.$value}}for children with one value -->
+        <!-- {{message.value}} for children with multiple keys/values -->
+        <p class="center">all: | <span ng-repeat="task in completed.allMessages">{{ task.value }} | </span></p>
+
+        <table>
+            <tr>
+                <th style="text-align: left"><u>task</u></th>
+                <th>priority</th>
+            </tr>
+            <tr ng-repeat="task in completed.allMessages" 
+                ng-show="task.completed" 
+                style="text-decoration: line-through">
+                <td> {{ task.value }} </td>
+                <td class="center"> {{  task.priority | priority }} </td>
+            </tr>
+        </table>
+    </div>

@@ -1,0 +1,26 @@
+.box {
+    vertical-align: middle;
+    background-color: #bdbdbd;
+    position: fixed; /* or absolute */
+    left: 50%; /* top left corner will be in middle of page*/
+    width: 600px;
+    margin-left: -300px; /* half the width, minus means moved to left */
+}
+.title {
+    text-align: center;
+    background-color: darkseagreen; 
+}
+
+table {
+    background-color: #d3d3d3;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #a8a8a8;
+}
+
+
+.center {text-align: center;}
+.right {text-align: right};

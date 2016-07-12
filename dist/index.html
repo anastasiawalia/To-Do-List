@@ -1,20 +1,48 @@
 <!DOCTYPE html>
-<html ng-app="To-Do-List">
+<html ng-app= "myApp">
 <head>
     <meta charset="UTF-8">
-    <title>Bloc It Off!!!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <title>Bloc It Off</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
 </head>
 
 <body ng-controller="SampleCtrl">
     <!-- anything typed in here is magically saved to our Firebase database! -->
     <input type="text" ng-model="data.text"/>
+ 
+<h2>My To Do List</h2> 
+    
+<form ng-submit="todoAdd()">
+    <input type="text" ng-model="todoInput" size="50" placeholder="What would you like to do?">
+    <input type="submit" value="Add New">
+</form>
+
+<div ng-repeat="x in todoList">
+    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+</div>
+
+<p><button ng-click="remove()">Remove marked</button></p>
+    
+    
 
     <!-- all changes from our Firebase database magically appear here! -->
-    <h1>You said: {{ data.text }}</h1>
+    <h1>You said: {{ data.text }}</h1> 
     
+    <div ui-view></div>
+    <!-- partials/state1.list.html -->
+    <h3>List of State 1 Items</h3>
+    <ul>
+      <li ng-repeat="item in items">{{ item }}</li>
+    </ul>
+    
+    <!-- partials/state2.list.html -->
+    <h3>List of State 2 Things</h3>
+    <ul>
+      <li ng-repeat="thing in things">{{ thing }}</li>
+    </ul>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="/scripts/ui-router.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
     <script src="/scripts/app.js"></script>
